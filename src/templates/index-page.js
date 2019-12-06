@@ -1,11 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Typography from "@material-ui/core/Typography"
+
+import Layout from "../layout"
 
 export default ({ data }) => {
   const {
-    markdownRemark: { html },
+    markdownRemark: {
+      html,
+      frontmatter: { title },
+    },
   } = data
-  return <div dangerouslySetInnerHTML={{ __html: html }} />
+  return (
+    <Layout>
+      <Typography variant="h2">{title}</Typography>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </Layout>
+  )
 }
 
 export const query = graphql`
